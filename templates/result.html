@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Non-Followers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #405DE6, #5851D8, #833AB4, #C13584, #E1306C, #FD1D1D, #F56040, #F77737, #FCAF45, #FFDC80);
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h2 {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            width: 100px;
+            height: auto;
+            margin-bottom: 30px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin: 10px 0;
+        }
+
+        ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        ul li a:hover {
+            text-decoration: underline;
+        }
+
+        a.download-link {
+            text-align: center;
+            display: block;
+            margin-top: 20px;
+            color: #FFDC80;
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        a.download-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="{{ url_for('static', filename='images/instagram_logo.png') }}" alt="Instagram Logo" class="logo">
+
+        <h1>Instagram Non-Followers</h1>
+        <h2>The following users are not following you back:</h2>
+
+        <ul>
+            {% for user in non_followers %}
+                <li><a href="https://www.instagram.com/{{ user }}" target="_blank">{{ user }}</a></li>
+            {% endfor %}
+        </ul>
+
+        <a href="/download" class="download-link">Download the HTML of Non-Followers</a>
+    </div>
+
+</body>
+</html>
