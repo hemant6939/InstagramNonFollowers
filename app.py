@@ -1,8 +1,15 @@
 import os
 from flask import Flask, request, render_template, send_file
 from bs4 import BeautifulSoup
+from dotenv import load_dotenv
+
+# Load environment variables from the .env file
+load_dotenv()
 
 app = Flask(__name__)
+
+# Set secret key from environment variable
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 # Use /tmp for Render cloud or local file paths
 if os.getenv("RENDER"):  # If running on Render (cloud environment)
