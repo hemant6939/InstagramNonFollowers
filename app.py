@@ -1,13 +1,18 @@
+import os
 from flask import Flask, request, render_template, send_file
 from bs4 import BeautifulSoup
-import os
 
 app = Flask(__name__)
 
-UPLOAD_FOLDER = "uploads"
-RESULT_FOLDER = "results"
+# Use /tmp for Render cloud or local file paths
+if os.getenv("RENDER"):  # If running on Render (cloud environment)
+    UPLOAD_FOLDER = "/tmp/uploads"
+    RESULT_FOLDER = "/tmp/results"
+else:  # For local development
+    UPLOAD_FOLDER = "uploads"
+    RESULT_FOLDER = "results"
 
-# Ensure folders exist
+# Ensure the directories exist (or create them) in both local and cloud environments
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(RESULT_FOLDER, exist_ok=True)
 
@@ -31,9 +36,19 @@ def index():
             return render_template("index.html", error="Please upload both Followers and Following HTML files.")
 
         try:
+            # Save the uploaded files temporarily in /tmp/uploads (Render)
+            followers_file_path = os.path.join(UPLOAD_FOLDER, "followers.html")
+            following_file_path = os.path.join(UPLOAD_FOLDER, "following.html")
+
+            # Save the uploaded files
+            followers_file.save(followers_file_path)
+            following_file.save(following_file_path)
+
             # Extract usernames from both files
-            followers = extract_usernames_from_html(followers_file)
-            following = extract_usernames_from_html(following_file)
+            with open(followers_file_path, "r") as f:
+                followers = extract_usernames_from_html(f.read())
+            with open(following_file_path, "r") as f:
+                following = extract_usernames_from_html(f.read())
 
             if followers is None or following is None:
                 return render_template("index.html", error="Invalid HTML file format.")
@@ -41,7 +56,7 @@ def index():
             # Find non-followers
             non_followers = [user for user in following if user not in followers]
 
-            # Create an HTML result file
+            # Create an HTML result file in /tmp/results (Render)
             result_file_path = os.path.join(RESULT_FOLDER, "non_followers.html")
             with open(result_file_path, "w") as result_file:
                 result_file.write("<html><body><h1>Non-Followers</h1><ul>")
@@ -63,4 +78,4 @@ def download():
     return send_file(result_file, as_attachment=True)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
