@@ -9,29 +9,53 @@ This tool can be useful for managing your Instagram connections, cleaning up you
 Features
 
 Compares two lists: followers and following.
+
 Generates a list of Instagram accounts that are not following you back.
+
 Simple and easy-to-use Python script.
+
 Saves results in a readable format.
+
 How to Run
 
 Prerequisites
 Python (version 3.x or higher)
+
 Pandas (for managing data)
+
 Other dependencies (can be installed via requirements.txt)
+
+
 Steps
 Clone the repository:
+
 git clone https://github.com/hemant6939/InstagramNonFollowers.git
+
 cd InstagramNonFollowers
+
 Install dependencies: If you don't have the dependencies installed, create a virtual environment and install them:
+
 python -m venv venv
+
 source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+
 pip install -r requirements.txt
+
+
 Prepare your files:
+
 Create two files: followers.txt and following.txt.
+
 List your followers and following in each respective file (one username per line).
+
 Run the script: After preparing your files, you can run the script with:
+
 python check_non_followers.py
+
 View Results: The results will be saved in a file named non_followers.txt which contains the Instagram usernames that do not follow you back.
+
+
+
 Example Input
 
 followers.txt
