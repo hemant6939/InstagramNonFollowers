@@ -62,14 +62,17 @@ followers.txt
 user1
 user2
 user3
+
 following.txt
 user2
 user4
+
 Output
 
 non_followers.txt
 user1
 user3
+
 Contributing
 
 Feel free to fork the repository, make improvements, and create a pull request if you'd like to contribute.
