@@ -4,65 +4,25 @@ from bs4 import BeautifulSoup
 
 # Custom CSS for Instagram styling
 st.markdown("""
-<style>
-    /* Main title gradient */
-    .instagram-title {
-        background: #833AB4;
-        background: linear-gradient(45deg, #833AB4, #E1306C, #F77737);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-weight: 800 !important;
-        font-size: 2.5rem !important;
-        text-align: center;
-        margin-bottom: 30px !important;
-    }
-    
-    /* Section headers */
-    h2 {
-        color: #E1306C !important;
-        border-bottom: 2px solid #833AB4;
-        padding-bottom: 5px;
-    }
-    
-    h3 {
-        color: #833AB4 !important;
-    }
-    
-    /* Download button styling */
-    .stDownloadButton button {
-        background: linear-gradient(45deg, #833AB4, #E1306C) !important;
-        color: white !important;
-        border: none !important;
-        font-weight: 600 !important;
-        transition: all 0.3s ease !important;
-    }
-    
-    .stDownloadButton button:hover {
-        transform: scale(1.05);
-        box-shadow: 0 5px 15px rgba(131, 58, 180, 0.4);
-    }
-    
-    /* File uploader styling */
-    .stFileUploader {
-        border: 2px solid #833AB4 !important;
-        border-radius: 10px !important;
-        padding: 20px !important;
-    }
-    
-    /* Instructions styling */
-    .instructions {
-        background: #fafafa;
-        padding: 20px;
-        border-radius: 10px;
-        border: 1px solid #ddd;
-        margin-bottom: 30px !important;
-    }
-    
-    .instructions ol {
-        color: #666;
-        line-height: 1.8;
-    }
-</style>
+    <style>
+        .instagram-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            background: linear-gradient(45deg, #833AB4, #E1306C, #F77737);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #E1306C !important;
+            border-bottom: 2px solid #833AB4;
+            padding-bottom: 5px;
+        }
+        h3 {
+            color: #833AB4 !important;
+        }
+    </style>
 """, unsafe_allow_html=True)
 
 # App Title
@@ -70,19 +30,14 @@ st.markdown('<h1 class="instagram-title">Instagram Non-Followers Checker</h1>', 
 
 # Instructions Section
 st.markdown("""
-<div class="instructions">
-    <h3 style="color: #E1306C !important; margin-top: 0;">How to Use</h3>
-    <ol>
-        <li>Go to your Instagram Settings</li>
-        <li>Select <strong style="color: #833AB4;">Privacy and Security</strong></li>
-        <li>Click <strong style="color: #833AB4;">Download Data</strong></li>
-        <li>Request download and look for:<br>
-            <code style="background: #f0f0f0; padding: 2px 5px; border-radius: 3px;">followers.html</code> and 
-            <code style="background: #f0f0f0; padding: 2px 5px; border-radius: 3px;">following.html</code>
-        </li>
-    </ol>
-</div>
-""", unsafe_allow_html=True)
+### 📌 How to Use:
+1. **Go to Instagram Settings**  
+2. **Select Privacy and Security**  
+3. **Download Data** from Instagram  
+4. Upload:
+   - `followers.html`
+   - `following.html`
+""")
 
 # Function to extract usernames from HTML file
 def extract_usernames_from_html(file_content):
@@ -120,9 +75,8 @@ if followers_file and following_file:
             if non_followers:
                 st.markdown(f"**Found {len(non_followers)} accounts not following you back:**")
                 for user in non_followers:
-                    st.markdown(f'<span style="color: #E1306C">• </span>'
-                                f'<a href="https://www.instagram.com/{user}" target="_blank" '
-                                f'style="color: #833AB4; text-decoration: none;">@{user}</a>', 
+                    st.markdown(f'<a href="https://www.instagram.com/{user}" target="_blank" '
+                                f'style="color: #833AB4; text-decoration: none; font-weight: bold;">@{user}</a>', 
                                 unsafe_allow_html=True)
                 
                 # Provide Download Link
