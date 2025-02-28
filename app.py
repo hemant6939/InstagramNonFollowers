@@ -1,5 +1,4 @@
 import streamlit as st
-import os
 from bs4 import BeautifulSoup
 
 # Custom CSS for Instagram styling
@@ -7,7 +6,6 @@ st.markdown("""
 <style>
     /* Main title gradient */
     .instagram-title {
-        background: #833AB4;
         background: linear-gradient(45deg, #833AB4, #E1306C, #F77737);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -15,6 +13,7 @@ st.markdown("""
         font-size: 2.5rem !important;
         text-align: center;
         margin-bottom: 30px !important;
+        display: inline-block; /* Ensure gradient applies correctly */
     }
     
     /* Section headers */
@@ -66,7 +65,10 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # App Title
-st.markdown('<h1 class="instagram-title">Instagram Non-Followers Checker</h1>', unsafe_allow_html=True)
+st.markdown(
+    '<h1 class="instagram-title">Instagram Non-Followers Checker</h1>',
+    unsafe_allow_html=True
+)
 
 # Instructions Section
 st.markdown("""
