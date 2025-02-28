@@ -4,16 +4,13 @@ from bs4 import BeautifulSoup
 # Custom CSS for Instagram styling
 st.markdown("""
 <style>
-    /* Main title gradient */
+    /* Main title */
     .instagram-title {
-        background: linear-gradient(45deg, #833AB4, #E1306C, #F77737);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        color: #E1306C !important; /* Solid color instead of gradient */
         font-weight: 800 !important;
         font-size: 2.5rem !important;
         text-align: center;
         margin-bottom: 30px !important;
-        display: inline-block; /* Ensure gradient applies correctly */
     }
     
     /* Section headers */
